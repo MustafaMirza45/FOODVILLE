@@ -219,7 +219,7 @@ export class User_RestaurantView extends Component {
             
         <div class="row">
 
-            <div class= "columnX">
+            <div class= "columnX1">
             {abc}
             { this.props.review.insert?
            <div>

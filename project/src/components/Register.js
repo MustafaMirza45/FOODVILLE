@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import { Card, CardText, CardBody, Button, Row,  Label, Col} from 'reactstrap';//CardImg, CardTitle, CardSubtitle, CardHeader,
 import { Control, Form, Errors } from 'react-redux-form';//, actions
-import { sendmanager } from '../redux/ActionCreators';
+import { resetsend, sendmanager } from '../redux/ActionCreators';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 //import { FadeTransform } from 'react-animation-components';
@@ -24,6 +24,7 @@ const validEmail = (val) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    reset: ()=>{dispatch(resetsend())},
    sendmanager: (a)=>{dispatch(sendmanager(a))}
 });
 class Register extends Component{
@@ -46,7 +47,6 @@ class Register extends Component{
         }
         
         render(){
-            console.log(this.props.insert);
             return(
                 
                 <ReactCSSTransitionGroup transitionName = "example"
@@ -178,12 +178,39 @@ class Register extends Component{
                                                                     model=".Manager_Email"
                                                                     show="touched"
                                                                     messages={{
-                                                                        required: 'Required\n',
+                                                                        required: 'Required \n',
                                                                         validEmail: 'Invalid Email address'
                                                                     
                                                                 }}/>
                                                                 
                                                         </Col>
+                                                        <div className="mx-auto text-danger">
+                                                                {!this.props.email? 
+                                                                        <>
+                                                                            <div>
+                                                                                Not a valid email
+                                                                            </div>
+
+                                                                        </>
+                                                                            :<>
+                                                                            
+                                                                            </>
+                                                                 }
+                                                                {console.log(this.props.email, this.props.sent)}
+                                                                 {this.props.sent? 
+                                                                 
+                                                                    <>
+                                                                      { alert("an E-mail has been sent to your entered email")}
+                                                                        {setTimeout(()=>{
+                                                                            this.props.reset()
+                                                                        },500) }
+                                                                  </>
+                                                                    :<>
+                                                                        
+                                                                    </>
+                                                                }
+
+                                                        </div>
                                                 </Row>
                                                 
 

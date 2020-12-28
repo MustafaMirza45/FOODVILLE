@@ -1,6 +1,7 @@
 const express = require ('express');
 const bodyparser = require('body-parser');
-
+const nodemailer = require('nodemailer');
+var nev = require('node-email-validator');
 const connection=require('./sql');
 connection.connect((err) => {
     
@@ -9,6 +10,24 @@ connection.connect((err) => {
     
 });
 const res_man = express.Router();
+
+
+
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'mustafamirza45@gmail.com',
+        pass: 'Princess'
+
+    }
+
+
+})
+
+
+
+
 
 res_man.use(bodyparser.json());
 
@@ -28,20 +47,52 @@ res_man.route('/')
     });
   })
 .post( (req, res, next) => {
-   
+  
     console.log(req.body);
     connection.query('select count(*) as cou from restaurant_manager where User_Name="'+req.body.User_Name+'";', (err,rows) => {
       if(err) throw err;
+ 
     if(rows[0].cou ==0){
-      connection.query('insert into restaurant_manager (User_Name,Manager_Name,Manager_Email,Password,Join_date) values("'+ req.body.User_Name +'","'+ req.body.Manager_Name +'","'+ req.body.Manager_Email +'" , "'+req.body.Password + '", current_date());', (err,rows) => {
-          if(err) throw err;
+      let mailOptions = {
+        from: 'mustafamirza45@gmail.com',
+        to: req.body.Manager_Email,
+        subject: 'Registration Confirmation',
+        text: 'Congratulations! you have successfully registered your account on FoodVille'
+    
+      }
+      
+      nev(req.body.Manager_Email)
+      .then(validation => {console.log(validation);
+      
+       if(validation.isEmailValid){
+          connection.query('insert into restaurant_manager (User_Name,Manager_Name,Manager_Email,Password,Join_date) values("'+ req.body.User_Name +'","'+ req.body.Manager_Name +'","'+ req.body.Manager_Email +'" , "'+req.body.Password + '", current_date());', (err,rows) => {
+            if(err) throw err;
+            console.log("inserted")
+            transporter.sendMail(mailOptions,function(err,data){
+              if(err){
+                  console.log('An Error Occured',err);
+                  res.send({Insert: true,email: true,sent:false});
+              } else{
+                  console.log('Email has been successfully sent',data);
+                  res.send({Insert: true,email: true,sent:true});
+              }
+            })
+          // console.log('Data inserted into Db:');
+
+        });
+       }else{
+        res.send({Insert: true,email: false,sent:true});
+       }
         
-         // console.log('Data inserted into Db:');
-          res.send({Insert: true});
-      });
+      
+      })
+      .catch(error => console.log(error));
+      
+      
+  
     }else{
         //console.log('already exists');
-        res.send({Insert: false});
+        res.send({Insert: false,email: true,sent:false});
     }
    })
   })

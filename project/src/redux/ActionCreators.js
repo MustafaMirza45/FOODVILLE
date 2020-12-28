@@ -991,3 +991,6 @@ export const failed = (err)=>(
     type: ActionTypes.REVIEW_FAILED,
     payload: err
 })
+export const resetsend = () =>({
+    type: ActionTypes.RESET
+})

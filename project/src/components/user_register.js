@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import { Card, CardText, CardBody, Button, Row,  Label, Col} from 'reactstrap';//CardImg, CardTitle, CardSubtitle, CardHeader,
 import { Control, Form, Errors } from 'react-redux-form';//, actions
-import { senduser } from '../redux/ActionCreators';
+import { senduser,resetsend } from '../redux/ActionCreators';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 //import { FadeTransform } from 'react-animation-components';
@@ -28,6 +28,7 @@ const validEmail = (val) => {
 
 
 const mapDispatchToProps = dispatch => ({
+    reset: ()=>{dispatch(resetsend())},
     senduser: (a)=>{dispatch(senduser(a))}
  });
 
@@ -46,7 +47,7 @@ class User_register extends Component{
         
         handleSubmit(values) {
             console.log('Current State is: ' + JSON.stringify(values));
-            alert('Current State is: ' + JSON.stringify(values));
+            //alert('Current State is: ' + JSON.stringify(values));
             this.props.resetuserform();
             this.props.senduser(values);
         }
@@ -183,8 +184,36 @@ class User_register extends Component{
                                                                         validEmail: 'Invalid Email address'
                                                                     
                                                                 }}/>
+
                                                                 
                                                         </Col>
+                                                        <div className="mx-auto text-danger">
+                                                                {!this.props.email? 
+                                                                        <>
+                                                                            <div>
+                                                                                Not a valid email
+                                                                            </div>
+
+                                                                        </>
+                                                                            :<>
+                                                                            
+                                                                            </>
+                                                                 }
+                                                                {console.log(this.props.email, this.props.sent)}
+                                                                 {this.props.sent? 
+                                                                 
+                                                                    <>
+                                                                      { alert("an E-mail has been sent to your entered email")}
+                                                                        {setTimeout(()=>{
+                                                                            this.props.reset()
+                                                                        },500) }
+                                                                  </>
+                                                                    :<>
+                                                                        
+                                                                    </>
+                                                                }
+
+                                                        </div>
                                                 </Row>
 
 

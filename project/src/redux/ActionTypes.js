@@ -59,3 +59,4 @@ export const DP_UPLOAD_FAIL= 'DP_UPLOAD_FAIL';
 export const DP_UPLOAD= 'DP_UPLOAD';
 export const SET_LOCATION_FAILED= 'SET_LOCATION_FAILED';
 export const SET_LOCATION ='SET_LOCATION'
+export const RESET ='RESET'

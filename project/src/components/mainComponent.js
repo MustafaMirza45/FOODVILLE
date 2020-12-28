@@ -86,8 +86,8 @@ class Main extends Component {
                     <Switch location={this.props.location}>
                         
                         <Route exact path="/login" component={()=><Login login={this.props.login} />}/> 
-                        <Route exact path="/register" component={()=><Register  resetregisterform={this.props.resetregisterform} insert={this.props.register.minsert}/>}/>
-                        <Route exact path="/uregister" component={()=><User_register  resetuserform={this.props.resetuserform} insert={this.props.register.uinsert}/>}/>
+                        <Route exact path="/register" component={()=><Register  resetregisterform={this.props.resetregisterform} insert={this.props.register.minsert} email={this.props.register.memail} sent={this.props.register.sent}/>}/>
+                        <Route exact path="/uregister" component={()=><User_register  resetuserform={this.props.resetuserform} insert={this.props.register.uinsert} email={this.props.register.uemail} sent={this.props.register.sent}/>}/>
                         {this.props.login.loggedIn?
                         <> 
                         {
