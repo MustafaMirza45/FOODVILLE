@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 
 
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => {if(val>0){
     return  val && (val.length >= len);
@@ -24,7 +23,7 @@ const isNumber = (val) => !isNaN(Number(val));
 const mapStateToProps = state=>{
     
     return{
-        dish:state.dishes
+        dish: state.dishes
     };
   }
   const mapDispatchToProps = dispatch => ({
@@ -82,8 +81,8 @@ class Update_dish extends Component{
             
         }
         render(){
-            const dish = this.props.dish.dishes.filter((dis) => dis.Dish_ID === parseInt(this.props.id,10))[0];
-            console.log(dish)
+            const dish = this.props.dish.dishes.filter((dis) => dis.Dish_ID == parseInt(this.props.id,10))[0];
+            console.log( dish)
            if(this.state.updated){
                return(
                    <Redirect to={`/manager/${dish.Restaurant_ID}`}/>
@@ -115,7 +114,7 @@ class Update_dish extends Component{
                                                                 placeholder={dish.Dish_name}
                                                                 className="form-control "
                                                                 validators={{
-                                                                    required
+                                                                  
                                                                 }}
                                                                 />
                                                                 <Errors
@@ -123,7 +122,7 @@ class Update_dish extends Component{
                                                                 model=".Dish_name"
                                                                 show="touched"
                                                                 messages={{
-                                                                    required: 'Required\n',
+                                                                  
                                                                 }}/>
 
                                                                 </Col>
@@ -140,7 +139,7 @@ class Update_dish extends Component{
                                                                     placeholder={dish.Price}
                                                                     className="form-control"
                                                                     validators={{
-                                                                        required
+                                                                      
                                                                     }}
                                                                     />
                                                                     <Errors
@@ -148,8 +147,7 @@ class Update_dish extends Component{
                                                                         model=".Price"
                                                                         show="touched"
                                                                         messages={{
-                                                                            required: 'Required\n',
-                                                                
+                                                                          
                                                                     }}/>
                                                                     
                                                             </Col>
@@ -162,7 +160,7 @@ class Update_dish extends Component{
                                                                     placeholder={dish.Serving}
                                                                     className="form-control"
                                                                     validators={{
-                                                                        required
+                                                                      
                                                                     }}
                                                                 />
                                                                 <Errors
@@ -170,7 +168,7 @@ class Update_dish extends Component{
                                                                         model=".Serving"
                                                                         show="touched"
                                                                         messages={{
-                                                                        required: 'Required\n',
+                                                                        
                                                                     
                                                                     }}/>
                                                                     

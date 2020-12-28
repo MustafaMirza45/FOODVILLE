@@ -200,7 +200,7 @@ class Man_res extends Component {// same as making a  menu function
                                
                             </CardBody>
                             <div className="ml-auto">
-                                <Link to={`/dish/${res.Restaurant_ID}`}>
+                                <Link to={`/dish/${dish.Dish_ID}`}>
                                     <button className="colo font-weight-bold" >Edit Details</button>   
                                 </Link>
                                 <Button outline onClick={()=>this.handledelete(dish.Dish_ID)}><span className="fa fa-trash-o font-weight-bold">Delete Dish</span></Button>
