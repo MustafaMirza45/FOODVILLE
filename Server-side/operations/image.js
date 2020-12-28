@@ -26,16 +26,53 @@ const uploadRouter = express.Router();
 
 uploadRouter.use(bodyParser.json());
 
-uploadRouter.route('/')
+uploadRouter.route('/:resid')
 
 .post(upload.single('image'), (req, res) => {
     console.log(req);
     let img_src = "images/" + req.file.filename;
-    connection.query("update restaurants")
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json(req.file);
+    connection.query('update restaurant set img_src ="'+img_src+'" where Restaurant_ID ='+req.params.resid, (err,rows,fields) => {
+        if(err) throw err;
+      
+        console.log('Data received from Db:',rows);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(req.file);
+    });
+    
 })
+uploadRouter.route('/dish/:resid')
+
+.post(upload.single('image'), (req, res) => {
+    console.log(req);
+    let img_src = "images/" + req.file.filename;
+    connection.query('update dish_menu set img_src ="'+img_src+'" where Dish_ID ='+req.params.resid, (err,rows,fields) => {
+        if(err) throw err;
+      
+        console.log('Data received from Db:',rows);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(req.file);
+    });
+    
+})
+uploadRouter.route('/user/:resid')
+
+.post(upload.single('image'), (req, res) => {
+    console.log(req);
+    let img_src = "images/" + req.file.filename;
+    connection.query('update user set img_src ="'+img_src+'" where User_ID ='+req.params.resid, (err,rows,fields) => {
+        if(err) throw err;
+      
+        console.log('Data received from Db:',rows);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(req.file);
+    });
+    
+})
+
+
 
 
 module.exports = uploadRouter;

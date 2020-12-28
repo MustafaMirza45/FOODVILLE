@@ -94,12 +94,34 @@ restaurant.route('/:manId')
    })
   
 .put( (req, res, next) => {
-      res.write('Updating the chef: ' + req.params.chefId + '\n' );
-      res.end('will update the chef: ' + req.body.name + ' with details: ' + req.body.description);
+  console.log(req.body)
+        connection.query('Update rest_location set Latitude='+ req.body.lat +', Longitude='+req.body.lng+' where Restaurant_ID ='+ req.params.manId , (err,rows,fields) => {
+          if(err) throw err;
+        
+          console.log('Data updated:',rows);
+          connection.query('Update restaurant set Rest_Name="'+req.body.Rest_Name+'",Website="'+req.body.Website+'",Contact_no="'+req.body.Contact_no+'",Address="'+req.body.Address+'",Manager_ID='+req.body.Manager_ID +',Cuisine_Type="'+req.body.Cuisine_Type+'"  where Restaurant_ID ='+ req.params.manId , (err,rows,fields) => {
+            if(err) throw err;
+          
+            console.log('Data updated:',rows);
+            res.send(true)
+            
+        });
+      });
   })
   
 .delete( (req, res, next) => {
-    res.end('Deleting chef: ' + req.params.chefId);
+   connection.query('delete from rest_location where Restaurant_ID ='+ req.params.manId , (err,rows,fields) => {
+    if(err) throw err;
+  
+    console.log('Data removed:',rows);
+    connection.query('delete from restaurant where Restaurant_ID ='+ req.params.manId , (err,rows,fields) => {
+      if(err) throw err;
+    
+      console.log('Data removed:',rows);
+      res.send(true)
+      
+  });
+});
 });
   
 module.exports = restaurant;

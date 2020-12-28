@@ -15,6 +15,14 @@ export const Restaurant =(state = {
     restaurants:[]
 }, action) =>{
     switch(action.type){
+        case ActionTypes.LOAD_ALL_RESTAURANTS:
+            
+            return {...state, errMess: null, restaurants: action.payload};
+
+        case ActionTypes.LOAD_RESTAURANTS_FAIL:
+
+            return {...state,errMess: action.payload, restaurants: []}
+
         case ActionTypes.ADD_RESTAURANT:
             
             return {...state,isLoading: false, errMess: null, location:def,restaurants: action.payload};
@@ -37,7 +45,20 @@ export const Restaurant =(state = {
         case ActionTypes.RESTAURANT_UPLOAD_FAIL:
     
             return state
+        case ActionTypes.RESTAURANT_DELETE:
 
+        return state
+        case ActionTypes.RESTAURANT_DELETE_FAIL:
+
+            return state
+        case ActionTypes.RESTAURANT_UPDATE_FAIL:
+
+            return state
+        case ActionTypes.RESTAURANT_UPDATE:
+
+            return state
+    
+    
 
         default:
             return state;

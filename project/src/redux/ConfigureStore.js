@@ -6,9 +6,11 @@ import { LoginReducer } from './LoginReducer'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import { InitialRegister,InitialUserRegister,RestaurantRegister  } from './forms';
-import { Users } from './users';
+import {User_Profile_Reducer} from './User_Profile_Reducer';
+import { dishadd, InitialRegister,InitialUserRegister,RestaurantRegister  } from './forms';
 import {Regreducer} from './registerreducer';
+import { Dishes } from './DishReducer';
+import { Review } from './reviewReducer';
 
 
 export const ConfigureStore = () => {
@@ -18,12 +20,15 @@ export const ConfigureStore = () => {
          managers: Managers,
          restaurants: Restaurant,
          login: LoginReducer,
-         users: Users,
+         loggedinUser: User_Profile_Reducer,
          registeration: Regreducer,
+         dishes: Dishes,
+         review: Review,
          ...createForms({
             register: InitialRegister,
             userregister: InitialUserRegister,
-            restaurant: RestaurantRegister
+            restaurant: RestaurantRegister,
+            dish: dishadd
          })
        }) ,composeWithDevTools(applyMiddleware(thunk,logger))
        

@@ -38,9 +38,21 @@ cur_user.route('/')
       connection.query('insert into user (first_name,Last_name,Phone_num,Email,Password,User_name,Home_address,Gender) values("'+ req.body.first_name +'","'+ req.body.Last_name +'","'+ req.body.Phone_num +'","'+req.body.Email + '","'+ req.body.Password +'","'+ req.body.User_Name +'","'+ req.body.Home_address +'","'+ req.body.Gender +'");', (err,rows) => {
           if(err) throw err;
           console.log("in insert");
-        
+          connection.query('Select UserID from user where User_name="'+req.body.User_Name+'"', (err,rows1,fields) => {
+            if(err) throw err;
+              console.log('Data received from Db:',rows1);
+                let id = rows1[0].UserID
+                connection.query('INSERT INTO foodinn.user_location (UserID)VALUES ('+id+')', (err,rows,fields) => {
+                  if(err) throw err;
+                
+                  console.log('Data received from Db:',rows);
+                  res.send({Insert: true});
+                });
+            console.log('Data received from Db:',rows);
+          
+          });
          // console.log('Data inserted into Db:');
-          res.send({Insert: true});
+         
       });
     }else{
         //console.log('already exists');

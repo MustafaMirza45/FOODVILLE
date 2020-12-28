@@ -24,3 +24,8 @@ export const RestaurantRegister ={
     Address:'',
     Cuisine_Type:'',
 }
+export const dishadd ={
+    Dish_name:'',
+    Price: '',
+    Serving: '',
+}

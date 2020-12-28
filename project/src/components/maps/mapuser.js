@@ -1,20 +1,27 @@
 import React from 'react'
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
+import {Get_Curr_Location } from '../../redux/ActionCreators'
 import Autocomplete from 'react-google-autocomplete';
-import { Button } from 'reactstrap';
-import {Res_addr} from '../../redux/ActionCreators';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import { Switch, Route, Redirect, withRouter , Link} from 'react-router-dom';
+import { Button, Row,  Label, Col, Modal,ModalBody,ModalHeader,Breadcrumb,BreadcrumbItem} from 'reactstrap';
 
 
 Geocode.setApiKey("AIzaSyDcL9-wKJmyHhupmtAoA3UTZNiVnq1kbi8");
 Geocode.enableDebug();
 
-const mapDispatchToProps = dispatch => ({
-   Res_addr: (Address)=>{dispatch(Res_addr(Address))},
-  });
+const mapDispatchToProps = dispatch => ({   //saray calls r returned
+    Get_Curr_Location : (values) =>    // call krunge to use dispatch
+    {
+        console.log("Inside mapdispatchtoProps of maps");
+        dispatch (Get_Curr_Location(values))   //sending values to the actioncreator wala validate_user
+    }
+}) 
+
 class Map extends React.Component{
-    constructor( props ){
+    constructor( props )
+    {
         super( props );
         this.state = {
          address: '',
@@ -28,10 +35,17 @@ class Map extends React.Component{
          markerPosition: {
           lat: this.props.center.lat,
           lng: this.props.center.lng
-         }
         }
+        };
+        this.SubmitLocation=this.SubmitLocation.bind(this);
     }
-    
+
+    SubmitLocation(event){
+        event.preventDefault();
+        console.log("address saved!");
+        this.props.Get_Curr_Location(this.state);
+    }
+
       /**
         * Get the current address from the default map position and set those values in the state
         */
@@ -222,7 +236,7 @@ class Map extends React.Component{
                 
                 <Marker google={this.props.google}
                     name={'something'}
-                    draggable={false}
+                    draggable={true}
                     onDragEnd={ this.onMarkerDragEnd }
                     position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
                 />
@@ -235,6 +249,18 @@ class Map extends React.Component{
                     </div>
                 </InfoWindow>
                 {/* For Auto complete Search Box */}
+                <Autocomplete
+                    style={{
+                        width: '100%',
+                        height: '40px',
+                        paddingLeft: '16px',
+                        marginTop: '2px',
+                        marginBottom: '100px'
+                    }}
+                    onPlaceSelected={ this.onPlaceSelected }
+                    types={['address']}
+                    
+                />
      
             </GoogleMap>
             )
@@ -244,6 +270,11 @@ class Map extends React.Component{
           if( this.props.center.lat !== undefined ) {
            map = <div>
              <div>
+             <div className="row">
+                            <Breadcrumb className="navr">
+                                    <BreadcrumbItem><Link to="/user">Done</Link></BreadcrumbItem>
+                            </Breadcrumb>
+                        </div>
               <div className="form-group">
                <label htmlFor="">City</label>
                <input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
@@ -259,9 +290,6 @@ class Map extends React.Component{
               <div className="form-group">
                <label htmlFor="">Address</label>
                <input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
-              </div>
-             </div>
-             
       
              <AsyncMap
               googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcL9-wKJmyHhupmtAoA3UTZNiVnq1kbi8&libraries=places"
@@ -275,16 +303,21 @@ class Map extends React.Component{
                <div style={{ height: `100%` }} />
               }
              />
-
+             <br>
+             </br>
+             <br>
+             </br>
+             </div>
+              <button style={{marginBottom : 30}} onClick = {this.SubmitLocation}>Save Location</button>
+             </div>
             </div>
         } else {
            map = <div style={{height: this.props.height}} />
           }
-          
           return( map )
          }
         }
         
         
         
-export default connect(null,mapDispatchToProps) (Map);
+        export default connect (null,mapDispatchToProps)(Map) 

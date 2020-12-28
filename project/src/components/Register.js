@@ -40,7 +40,7 @@ class Register extends Component{
         
         handleSubmit(values) {
             console.log(values)
-            alert('Current State is: ' + JSON.stringify(values));
+            //alert('Current State is: ' + JSON.stringify(values));
             this.props.resetregisterform();
             this.props.sendmanager(values);
         }
