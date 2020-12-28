@@ -17,8 +17,8 @@ const res_man = express.Router();
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'mustafamirza45@gmail.com',
-        pass: 'Princess'
+        user: 'foodville.pvt.ltd@gmail.com',
+        pass: 'FoodVille123'
 
     }
 
@@ -54,7 +54,7 @@ res_man.route('/')
  
     if(rows[0].cou ==0){
       let mailOptions = {
-        from: 'mustafamirza45@gmail.com',
+        from: 'foodville.pvt.ltd@gmail.com',
         to: req.body.Manager_Email,
         subject: 'Registration Confirmation',
         text: 'Congratulations! you have successfully registered your account on FoodVille'

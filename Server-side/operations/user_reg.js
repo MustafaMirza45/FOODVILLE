@@ -17,8 +17,8 @@ cur_user.use(bodyparser.json());
 let transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-      user: 'mustafamirza45@gmail.com',
-      pass: 'Princess'
+      user: 'foodville.pvt.ltd@gmail.com',
+      pass: 'FoodVille123'
 
   }
 
@@ -47,7 +47,7 @@ cur_user.route('/')
       if(err) throw err;
     if(rows[0].cou ==0){
       let mailOptions = {
-        from: 'mustafamirza45@gmail.com',
+        from: 'foodville.pvt.ltd@gmail.com',
         to: req.body.Email,
         subject: 'Registration Confirmation',
         text: 'Congratulations! you have successfully registered your account on FoodVille'
