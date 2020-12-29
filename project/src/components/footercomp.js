@@ -28,9 +28,9 @@ function Footer (props){
                     </div>
                    
                 </div>
-                <div className="row justify-content-end textcol">
-                    <div className="col-12 col-sm-4 textcol">
-                            <div className="text-center textcol">
+                <div className="row justify-content-end ">
+                    <div className="col-12 col-sm-4 ">
+                            <div className="text-center ">
                                 <a className="btn btn-social-icon btn-google textcol" href="http://google.com/+"><i className="fa fa-google-plus"></i></a>
                                 <a className="btn btn-social-icon btn-facebook textcol" href="http://www.facebook.com/profile.php?id="><i className="fa fa-facebook"></i></a>
                                 <a className="btn btn-social-icon btn-linkedin textcol" href="http://www.linkedin.com/in/"><i className="fa fa-linkedin"></i></a>

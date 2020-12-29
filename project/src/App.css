@@ -130,7 +130,7 @@ padding-bottom: 40px;
   transition: opacity 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 .cards{
-  border-radius:  100px 15px 100px 15px;
+ 
   border-color: #0f0f0f;
  
 }.card-color{
@@ -142,7 +142,7 @@ padding-bottom: 40px;
   box-shadow: 5px 5px grey ;
 }
 .cards2{
-  border-radius:  100px 100px 100px 100px;
+ 
   box-shadow: 10px 10px gray ;
 }
 .navr{
@@ -174,10 +174,6 @@ padding-bottom: 40px;
   transition: opacity 1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
-img {
-  width: 100px;
-  height: 100px;
-}
 .colort{
   background-color: darkviolet;
   color: black;
@@ -199,14 +195,14 @@ img {
   height: 70%;
 }
 .cut{
-  width: 20%;
-  height: 24%;
+  width: 50%;
+  height: 50%;
   clip-path: circle();
 }
 
 .cut1{
-  width: 20%;
-  height: 44%;
+  width: 50%;
+  height: 50%;
   clip-path: fill-box;
 }
 .tab-list {  
@@ -941,9 +937,7 @@ span.psw {
   padding-top: 80px;
   background-color : rgb(241, 129, 144);
 }
-.picc{
-  padding-left: 100px;
-}
+
 
 .center-col {
   flex: 1;

@@ -123,7 +123,7 @@ export class User_profile extends Component {
     FilterByLocation(event){
        event.preventDefault();
        this.setState({
-           LocFilter : true
+           LocFilter : !this.state.LocFilter
        });
     }
     updateSearch(event) {
@@ -263,14 +263,13 @@ export class User_profile extends Component {
 
         return (
             <div class="row contain">
-                <div class="columnX">
+                <div class="columnX col-4">
                     <div class = "center-pic">
-                        <div className = "picc">
+                        <div className = "center ">
                         {this.props.LoggedInUser.imgsrc !== null?
-                                <img src={baseUrl + this.props.LoggedInUser.imgsrc} alt="Avatar" align = 'center' style={{borderRadius:50 , width : 100
-                                    , alignSelf : 'center' }}></img>
+                                <img src={baseUrl + this.props.LoggedInUser.imgsrc} alt="Avatar" align = 'center' style={{ width : 100,alignSelf : 'center' }}></img>
                                 :
-                                <img src={baseUrl +  "images/noimage.png"} alt="Avatar" align = 'center' style={{borderRadius:50 , width : 100
+                                <img src={baseUrl +  "images/noimage.png"} alt="Avatar" align = 'center' style={{  width : 100
                                     , alignSelf : 'center' }}></img>
                                 }
                        
@@ -316,21 +315,24 @@ export class User_profile extends Component {
                         </>}
                     </div>
                 </div>
-                <div class="columnY">
+                <div class="columnY col-8">
                     <div style={{marginBottom: 50}}>
                         <input style = {{width : 1000, marginLeft:70}} placeHolder = 'Search by Restaurant name'type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} />
-                        <div style={{marginLeft:70 , marginRight:50}}>
-                            <label>
-                                Filter by rating:
-                                <select value={this.state.filter_Rating_value} onChange={this.handleRFilterChange}>
-                                    <option value="-1">All</option>
-                                    <option value="5">5</option>
-                                    <option value="4">4</option>
-                                    <option value="3">3</option>
-                                    <option value="2">2</option> 
-                                    <option value="1">1</option>
-                                </select>
-                            </label>
+                        <div className="row" style={{marginLeft:70 , marginRight:50}}>
+                            <div className="col-3">
+                                <label>
+                                    Filter by rating:
+                                    <select value={this.state.filter_Rating_value} onChange={this.handleRFilterChange}>
+                                        <option value="-1">All</option>
+                                        <option value="5">5</option>
+                                        <option value="4">4</option>
+                                        <option value="3">3</option>
+                                        <option value="2">2</option> 
+                                        <option value="1">1</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div className="col-3">
                             <label style={{marginLeft:40}}>
                                 Filter by Cuisine Type:
                                 <select value={this.state.filter_Dishvalue} onChange={this.handleDFilterChange}>
@@ -342,12 +344,15 @@ export class User_profile extends Component {
                                     <option  value="Chinese">Chinese</option>
                                 </select>
                             </label>
+                            </div>
+                            <div className="col-3">
                             <label style={{marginLeft:40}} >
-                               <h4>Filter Using Location</h4>
+                               <h4>Filter Using Location</h4><h6>(press again to use other filters)</h6>
                                <Button variant="outlined" size="small" color="primary" onClick  ={this.FilterByLocation}>
                                     Filter Restaurants
                             </Button>
                             </label>
+                            </div>
                         </div>
                     </div>
                     {(filteredRests[0]) ? 

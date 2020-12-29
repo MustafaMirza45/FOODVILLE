@@ -138,7 +138,7 @@ export class User_RestaurantView extends Component {
             
             return(
                 
-                <Card className="cards bord row" body  style={{borderColor: '#0000' }}>
+                <Card className="cards bord row " body  style={{borderColor: '#0000' }}>
                     {console.log("inside abs resonclick  " + res.Rest_Name)}
                  <CardBody>
                     <img className="cut" src={baseUrl + res.img_src}/>   

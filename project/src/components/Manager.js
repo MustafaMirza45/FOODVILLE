@@ -90,7 +90,7 @@ class Manager extends Component {// same as making a  menu function
                             </Link>
                            </div>
                       
-                            <div className="block    mx-auto">
+                            <div className="block mx-auto center ">
                                
                                 {res.img_src === null?
                                 <CardImg className="cut" width="100%" src={baseUrl + "images/default.jpg"} alt={res.Rest_Name} />

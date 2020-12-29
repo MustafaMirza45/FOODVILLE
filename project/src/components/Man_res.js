@@ -108,7 +108,7 @@ class Man_res extends Component {// same as making a  menu function
                             </Breadcrumb>
                     </div>
                       
-                            <div className="block1    mx-auto">
+                            <div className="block1  center  mx-auto">
                                
                                 {res.img_src === null?
                                 <CardImg className="cut" width="100%" src={baseUrl + "images/default.jpg"} alt={res.Rest_Name} />
@@ -158,7 +158,7 @@ class Man_res extends Component {// same as making a  menu function
                       
                         <Card className="cards bord shadow" body  style={{borderColor: '#0000' }}>
                           
-                                <div className="block1    mx-auto">
+                                <div className="block1   center mx-auto">
                                    
                                     {dish.img_src === null?
                                     <CardImg className="cut1" width="100%" src={baseUrl + "images/noimage.png"} alt={dish.Dish_name} />
