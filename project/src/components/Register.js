@@ -203,7 +203,7 @@ class Register extends Component{
                                                                       { alert("an E-mail has been sent to your entered email")}
                                                                         {setTimeout(()=>{
                                                                             this.props.reset()
-                                                                        },500) }
+                                                                        },400) }
                                                                   </>
                                                                     :<>
                                                                         

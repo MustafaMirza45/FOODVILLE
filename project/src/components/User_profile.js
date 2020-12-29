@@ -262,12 +262,18 @@ export class User_profile extends Component {
         })
 
         return (
-            <div class="row">
+            <div class="row contain">
                 <div class="columnX">
                     <div class = "center-pic">
                         <div className = "picc">
-                        <img src={baseUrl + this.props.LoggedInUser.imgsrc} alt="Avatar" align = 'center' style={{borderRadius:50 , width : 100
-                            , alignSelf : 'center' }}></img>
+                        {this.props.LoggedInUser.imgsrc !== null?
+                                <img src={baseUrl + this.props.LoggedInUser.imgsrc} alt="Avatar" align = 'center' style={{borderRadius:50 , width : 100
+                                    , alignSelf : 'center' }}></img>
+                                :
+                                <img src={baseUrl +  "images/noimage.png"} alt="Avatar" align = 'center' style={{borderRadius:50 , width : 100
+                                    , alignSelf : 'center' }}></img>
+                                }
+                       
                         </div>
                         <Row className="form-group">
                             <Col md={{size: 12, offset: 0}}>

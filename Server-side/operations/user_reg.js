@@ -82,7 +82,7 @@ cur_user.route('/')
               
             });
         }else{
-          res.send({Insert: true,email: false,sent:true});
+          res.send({Insert: true,email: false,sent:false});
           }
     })
     .catch(error => console.log(error));

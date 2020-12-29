@@ -86,7 +86,7 @@ class Login extends Component {
                             value = {this.state.pass} 
                             onChange = {this.handlePChange}
                             />
-                            {this.props.login.error? <div>Username or Password is incorrect</div>:<> </>}
+                            {this.props.login.error? <div className="text-danger">Username or Password is incorrect</div>:<> </>}
                             <button 
                             type="submit">Login</button>
                            

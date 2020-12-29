@@ -7,7 +7,7 @@ import User from './Get_User_Location';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
-import { logout } from '../redux/ActionCreators';
+import { logout,resetsend } from '../redux/ActionCreators';
 import Login from './Login';
 import Register from './Register';
 import User_register from './user_register';
@@ -33,11 +33,14 @@ const mapStateToProps = state=>{
     resetuserform: () => {dispatch(actions.reset('userregister'))},
     resetrestaurantform: () => {dispatch(actions.reset('restaurant'))},
     resetdishform: () => {dispatch(actions.reset('dish'))},
-    logout: ()=>{dispatch(logout())}
+    logout: ()=>{dispatch(logout())},
+    reset: ()=>{dispatch(resetsend())}
   });
   
 class Main extends Component {
-   
+   componentDidMount(){
+     this.props.reset()
+   }
     render(){
        // renders();
        const restWithId= ({match}) =>{

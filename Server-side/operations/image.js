@@ -61,7 +61,7 @@ uploadRouter.route('/user/:resid')
 .post(upload.single('image'), (req, res) => {
     console.log(req);
     let img_src = "images/" + req.file.filename;
-    connection.query('update user set img_src ="'+img_src+'" where User_ID ='+req.params.resid, (err,rows,fields) => {
+    connection.query('update user set img_src ="'+img_src+'" where UserID ='+req.params.resid, (err,rows,fields) => {
         if(err) throw err;
       
         console.log('Data received from Db:',rows);

@@ -270,7 +270,11 @@ export class User_RestaurantView extends Component {
                 <Card className="cards bord con" body  style={{borderColor: '#0000' }}>
                 <CardBody>
                 
-                {abc3}
+                {abc3? 
+                <>{abc3}</>
+                :
+                <h1>this restaurant has no dishes</h1>
+                }
 
                 </CardBody>
                 </Card>
