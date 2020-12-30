@@ -384,7 +384,7 @@ export const fetch_review_failed= (errmess)=>
 });
 
 
-export const fetchdishes = (values) => (dispatch) => {
+export const fetchdishe = (values) => (dispatch) => {
 
     console.log("dishes that im fetching" + values);
       

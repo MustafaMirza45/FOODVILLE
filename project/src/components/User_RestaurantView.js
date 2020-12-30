@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { fetchAllRestaurants, fetchreviews, fetchdishes, checkrev } from '../redux/ActionCreators'
+import { fetchAllRestaurants, fetchreviews, fetchdishe, checkrev } from '../redux/ActionCreators'
 import { Card,CardTitle,CardBody, CardText ,Label} from 'reactstrap';
 import { connect } from 'react-redux'
 import { withRouter} from 'react-router-dom';
 import {Send_Review} from '../redux/ActionCreators';
+import  Map  from './maps/mapsimp';
 const baseUrl='http://localhost:3003/'
 
 const mapDispatchToProps = dispatch => ({   //saray calls r returned
@@ -28,7 +29,7 @@ const mapDispatchToProps = dispatch => ({   //saray calls r returned
     fetchdishes: (values)=>
     {
         console.log("Inside mapdispatchtoProps Fetch all dishes" + values.Id);
-        dispatch(fetchdishes(values))
+        dispatch(fetchdishe(values))
     },
     checkrev: (m)=>{dispatch(checkrev(m))}
 }) 
@@ -73,11 +74,12 @@ export class User_RestaurantView extends Component {
         console.log("BEFORE DISPATCH XXXXXXXXXXXXXXX" +this.state.Id) 
         setTimeout(()=>{
             this.props.checkrev(this.state)
+            this.props.fetchdishes(this.state);
         }, 200)
        
         this.props.fetchAllRestaurants(this.state);
         this.props.fetchreviews(this.state);
-        this.props.fetchdishes(this.state);
+       
         }
     
         handleRchange(event) {
@@ -127,7 +129,7 @@ export class User_RestaurantView extends Component {
         let FilteredDishes= [] =y3.filter(
             (y3) => {
                 if(y3.Restaurant_ID == this.state.Restaurant_ID){ 
-                return( y3.img_src);
+                return( y3);
             }
             }
         )
@@ -157,7 +159,22 @@ export class User_RestaurantView extends Component {
                             
                         </div>
                       
-                       
+                        {res.latitude === null?
+                                <div className=" border center">
+                                   <CardText>location not added</CardText>
+                                </div>
+                            :
+                            
+                                <Map
+                                    google={this.props.google}
+                                    center={{ lat: res.latitude, lng:  res.longitude}}
+                                    height='300px'
+                                    zoom={15}
+                                    lat={res.latitude}
+                                    lng={res.longitude}
+                                
+                                />
+                            }
 
 
                     </CardBody>
@@ -231,24 +248,24 @@ export class User_RestaurantView extends Component {
           
             :
                 <form onSubmit= {this.onSubmit}>
+                    <input className = 'xx'
+                            type="text" 
+                            placeholder="Enter Rating"
+                            value = {this.state.rating} 
+                            onChange = {this.handleRchange}
+                            />
+
                 <input className = 'xx'
-                        type="text" 
-                        placeholder="Enter Rating"
-                        value = {this.state.rating} 
-                        onChange = {this.handleRchange}
-                        />
-
-            <input className = 'xx'
-                        type="text" 
-                        placeholder="Enter Your Comment"
-                        value = {this.state.comment} 
-                        onChange = {this.handleVchange}
-                        />
+                            type="text" 
+                            placeholder="Enter Your Comment"
+                            value = {this.state.comment} 
+                            onChange = {this.handleVchange}
+                            />
 
 
-                        <button 
-                        type="submit">Submit Review </button>
-        </form>
+                            <button 
+                            type="submit">Submit Review </button>
+            </form>
             }
             </div>
             <div class= "columnX2">

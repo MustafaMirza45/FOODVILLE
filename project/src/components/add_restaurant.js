@@ -198,7 +198,7 @@ class Add_restaurant extends Component{
                                                                 placeholder="Cont. Number"
                                                                 className="form-control"
                                                                 validators={{
-                                                                    required,minLength: minLength(13),maxLength:  maxLength(20), isNumber
+                                                                    required,minLength: minLength(11),maxLength:  maxLength(13), isNumber
                                                                 }}
                                                                 />
                                                                 <Errors
@@ -207,7 +207,7 @@ class Add_restaurant extends Component{
                                                                     show="touched"
                                                                     messages={{
                                                                         required: 'Required\n',
-                                                                        minLength: 'Must be 13 digits',
+                                                                        minLength: 'Must be 11 digits',
                                                                         maxLength: 'Must be 13 fixed'
                                                             
                                                                 }}/>
@@ -232,7 +232,7 @@ class Add_restaurant extends Component{
                                                                     messages={{
                                                                     required: 'Required\n',
                                                                     minLength: 'Must be 10 digits',
-                                                                    maxLength: 'Must be 50 fixed'
+                                                                    maxLength: 'Must be 50 or less'
                                                                 }}/>
                                                                 
                                                         </Col>

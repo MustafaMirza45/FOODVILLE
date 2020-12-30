@@ -248,7 +248,7 @@ export class User_profile extends Component {
                             
                            <div className="mx-auto center">
                             <h2 style={{float:'right'}}>{res.Rest_Name}
-                                    <h4><a href = "{res.Website}">{res.Website}</a> </h4>
+                                    <h4><a href={"https://"+ res.Website} target="_blank">{res.Website}</a></h4>
                                         <h4>Cuisine_Type : {res.Cuisine_Type}</h4>
                                        {res.Rating?
                                         <h4>Rating : {res.Rating}/5</h4>:
